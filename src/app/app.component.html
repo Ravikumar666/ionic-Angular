@@ -1,0 +1,63 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Expense Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" offset-md="3">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Expense</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-input type="text" [(ngModel)]="expense" name="expense" placeholder="Enter Expense"
+                  label="Expense Reason" labelPlacement="floating"></ion-input>
+              </ion-item>{{expense}}
+              <ion-item>
+                <ion-input [(ngModel)]="amount" type="text" (input)="onInputChange($event)" placeholder="Enter Amount"
+                  label="Expense Amount" labelPlacement="floating"></ion-input>
+              </ion-item>
+
+              <div class="ion-margin-vartical ion-text-right">
+                <ion-button color="danger" fill="outline" (click)="clear()"><ion-icon name="close"
+                    slot="start"></ion-icon>Clear</ion-button>
+                <ion-button (click)="addExpense()" [disabled]="disbleAddbtn"> <ion-icon name="add"
+                    slot="start"></ion-icon>Add
+                  Expense</ion-button>
+              </div>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-list *ngFor='let result of results'>
+            <div style="display: flex;">
+              <ion-item>{{result.expense}}</ion-item>
+              <ion-item>$ {{result.amount}}</ion-item>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>Total Expense: ${{total}}</ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-content>
+
+
+</ion-app>
